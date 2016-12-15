@@ -104,7 +104,7 @@ int		aff_key(int keycode, t_env *env)
 	{
 		ft_putstr("\033[0;32m✔︎ Wolf3D Closed\033[0m\n");
 		free(env->img);
-		//freetab(env);
+		freetab(env);
 		free(env->tab);
 		free(env);
 		while (42) ;

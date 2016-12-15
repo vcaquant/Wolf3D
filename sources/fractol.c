@@ -81,12 +81,8 @@ int		main(int ac, char **av)
 	env->tab = (int**)malloc(sizeof(int*) * (env->yc + 1));
 	env->tab[env->endy] = NULL;
 	env->i = 0;
-	while (env->i < env->endy)
-		env->tab[env->i++] = (int*)malloc(sizeof(int) * env->xc);
-	/*init_tab1(env);
-	init_tab2(env);
-	init_tab3(env);
-	init_tab4(env);*/
+	// while (env->i < env->endy)
+		// env->tab[env->i++] = (int*)malloc(sizeof(int) * env->xc);
 	env->mlx = mlx_init();
 	prp_win(env);
 	ft_recup(env);
