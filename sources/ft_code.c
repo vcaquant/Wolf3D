@@ -107,7 +107,7 @@ int		aff_key(int keycode, t_env *env)
 		freetab(env);
 		free(env->tab);
 		free(env);
-		while (42) ;
+		// while (42) ;
 		exit(EXIT_SUCCESS);
 	}
 	return (0);

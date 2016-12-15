@@ -79,7 +79,6 @@ int		main(int ac, char **av)
 	init_var(env);
 	env->fd = open(av[1], O_RDONLY);
 	env->tab = (int**)malloc(sizeof(int*) * (env->yc + 1));
-	env->tab[env->endy] = NULL;
 	env->i = 0;
 	// while (env->i < env->endy)
 		// env->tab[env->i++] = (int*)malloc(sizeof(int) * env->xc);
