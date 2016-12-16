@@ -22,29 +22,7 @@ void	freetab(t_env *env)
 		free(env->tab[y]);
 		y++;
 	}
-}
-
-void	move(t_env *env, int keycode)
-{
-	mlx_destroy_image(env->mlx, env->img->ptr_img);
-	env->img = malloc(sizeof(t_img));
-	env->img->ptr_img = mlx_new_image(env->mlx, W_X, W_Y);
-	env->img->bts_img = mlx_get_data_addr(env->img->ptr_img, &(env->img->bpp),
-			&(env->img->size_line), &(env->img->end));
-	if (keycode == 124)
-	{
-		env->angle = (int)((env->angle / M_PI / 2) * 360 + 5)
-			/ 360.0 * M_PI * 2;
-		env->angle >= 2 * M_PI ? env->angle -= 2 * M_PI : 0;
-	}
-	else if (keycode == 123)
-	{
-		env->angle = (int)((env->angle / M_PI / 2) * 360 - 5)
-			/ 360.0 * M_PI * 2;
-		env->angle >= 2 * M_PI ? env->angle += 2 * M_PI : 0;
-	}
-	map(env);
-	mlx_put_image_to_window(env->mlx, env->win, env->img->ptr_img, 0, 0);
+	free(env->tab);
 }
 
 void	move_back(t_env *env)
@@ -105,9 +83,8 @@ int		aff_key(int keycode, t_env *env)
 		ft_putstr("\033[0;32m✔︎ Wolf3D Closed\033[0m\n");
 		free(env->img);
 		freetab(env);
-		free(env->tab);
 		free(env);
-		// while (42) ;
+		while (42) ;
 		exit(EXIT_SUCCESS);
 	}
 	return (0);

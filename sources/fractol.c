@@ -80,7 +80,7 @@ int		main(int ac, char **av)
 	env->fd = open(av[1], O_RDONLY);
 	env->tab = (int**)malloc(sizeof(int*) * (env->yc + 1));
 	env->i = 0;
-	// while (env->i < env->endy)
+	// while (env->i < env->yc)
 		// env->tab[env->i++] = (int*)malloc(sizeof(int) * env->xc);
 	env->mlx = mlx_init();
 	prp_win(env);
