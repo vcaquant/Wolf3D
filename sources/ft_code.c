@@ -25,23 +25,31 @@ void	freetab(t_env *env)
 	free(env->tab);
 }
 
+void 	speed(t_env *env)
+{
+	if (env->front == 0.10)
+		env->front = 0.30;
+	else
+		env->front = 0.10;
+}
+
 void	move_back(t_env *env)
 {
-	if (env->tab[(int)(env->y - sin(env->angle) * -0.15)][
-		(int)(env->x + cos(env->angle) * -0.15)] == 0)
+	if (env->tab[(int)(env->y - sin(env->angle) * env->back)][
+		(int)(env->x + cos(env->angle) * env->back)] == 0)
 	{
-		env->x += cos(env->angle) * -0.15;
-		env->y -= sin(env->angle) * -0.15;
+		env->x += cos(env->angle) * env->back;
+		env->y -= sin(env->angle) * env->back;
 	}
 }
 
 void	move_front(t_env *env)
 {
-	if (env->tab[(int)(env->y - sin(env->angle) * 0.15)][
-		(int)(env->x + cos(env->angle) * 0.15)] == 0)
+	if (env->tab[(int)(env->y - sin(env->angle) * env->front)][
+		(int)(env->x + cos(env->angle) * env->front)] == 0)
 	{
-		env->x += cos(env->angle) * 0.15;
-		env->y -= sin(env->angle) * 0.15;
+		env->x += cos(env->angle) * env->front;
+		env->y -= sin(env->angle) * env->front;
 	}
 }
 
@@ -78,6 +86,8 @@ int		aff_key(int keycode, t_env *env)
 		map(env);
 		mlx_put_image_to_window(env->mlx, env->win, env->img->ptr_img, 0, 0);
 	}
+	if (keycode == 1)
+		speed(env);
 	if (keycode == 12 || keycode == 53)
 	{
 		ft_putstr("\033[0;32m✔︎ Wolf3D Closed\033[0m\n");

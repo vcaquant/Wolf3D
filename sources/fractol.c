@@ -54,12 +54,14 @@ void	map(t_env *env)
 		angle < 0 ? angle += 2 * M_PI : 0;
 		h = draw_line(env, angle, &color);
 		h = cos(M_PI / 6 - (M_PI / 3 * (x * 1.0 / W_X))) * h;
-		h = 50000 / h;
+		h = 100000 / h;
 		while (++y < W_Y)
 		{
 			if (y > ((1 - (h * 1.0 / W_Y)) * W_Y) / 2 &&
 				y < (W_Y / 2.0 + h / 2.0))
 				put(env, x, y, color);
+			else if (y < ((1 - (h * 1.0 / W_Y)) * W_Y) / 2)
+				put_blue(env, x, y);
 			else
 				put_black(env, x, y);
 		}

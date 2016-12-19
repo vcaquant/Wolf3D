@@ -46,7 +46,7 @@ int		hor_inf_z(t_env *env, t_point *p3, double angle, int *color)
 			if ((*p3).y >= env->endy || (*p3).y <= 0 || (*p3).x < 0 || (*p3).x >= env->endx)
 				return (1);
 		}
-	*color = 0xff00;
+	*color = 0x2ecc71; //0xff00;
 	return (0);
 }
 
@@ -63,7 +63,7 @@ void	ver_sup_pi(t_env *env, t_point *p2, double angle, int *color)
 			if ((*p2).y >= env->endy || (*p2).y < 0 || (*p2).x < 0 || (*p2).x >= (env->endx - 1))
 				break ;
 		}
-	*color = 0xff;
+	*color = 0xf1; //0xff;
 }
 
 void	ver_inf_pi(t_env *env, t_point *p2, double angle, int *color)
@@ -79,5 +79,5 @@ void	ver_inf_pi(t_env *env, t_point *p2, double angle, int *color)
 			if ((*p2).y >= (env->endy - 1) || (*p2).y < 0 || (*p2).x <= 0 || (*p2).x >= env->endx)
 				break ;
 		}
-	*color = 0xf0f0f0;
+	*color = 0xe74c3c; //0xf0f0f0;
 }

@@ -13,8 +13,8 @@
 #ifndef WOLF_H
 # define WOLF_H
 
-# define W_X		800
-# define W_Y		650
+# define W_X		1200
+# define W_Y		850
 
 # define BLACK		0x000000
 # define WHI		0xFFFFFF
@@ -63,6 +63,9 @@ typedef struct	s_env
 	char	*line;
 
 	int		*color;
+
+	double	front;
+	double	back;
 
 	double	x;
 	double	y;
@@ -134,6 +137,7 @@ int				mouse_hook(int button, int x, int y, t_env *env);
 void			color(t_env *env);
 void			put(t_env *env, int x, int y, int color);
 void			put_black(t_env *env, int x, int y);
+void			put_blue(t_env *env, int x, int y);
 
 void			ft_color(t_env *env, int x, int y);
 

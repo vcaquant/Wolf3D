@@ -19,11 +19,18 @@ void	put(t_env *env, int x, int y, int col)
 	env->img->bts_img[x * 4 + 2 + y * env->img->size_line] = (col >> 0) & 0xff;
 }
 
+void	put_blue(t_env *env, int x, int y)
+{
+	env->img->bts_img[x * 4 + 0 + y * env->img->size_line] = 255;
+	env->img->bts_img[x * 4 + 1 + y * env->img->size_line] = 165;
+	env->img->bts_img[x * 4 + 2 + y * env->img->size_line] = 0;
+}
+
 void	put_black(t_env *env, int x, int y)
 {
-	env->img->bts_img[x * 4 + 0 + y * env->img->size_line] = 0;
-	env->img->bts_img[x * 4 + 1 + y * env->img->size_line] = 0;
-	env->img->bts_img[x * 4 + 2 + y * env->img->size_line] = 0;
+	env->img->bts_img[x * 4 + 0 + y * env->img->size_line] = 149;
+	env->img->bts_img[x * 4 + 1 + y * env->img->size_line] = 165;
+	env->img->bts_img[x * 4 + 2 + y * env->img->size_line] = 166;
 }
 
 void	color(t_env *env)
@@ -39,6 +46,8 @@ void	init_var(t_env *env)
 	i = 0;
 	env->x = 1.5;
 	env->y = 1.5;
+	env->front = 0.10;
+	env->back = -0.10;
 	env->xc = 0;
 	env->yc = 0;
 	env->move = 0;
