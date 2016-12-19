@@ -23,7 +23,7 @@ int		ft_init_tab(t_env *env, char **av)
 	i = 0;
 	y = 0;
 	env->fd = open(av[1], O_RDONLY);
-	while ((ret = get_next_line((int const)env->fd, &line)) > 0)
+	while ((ret = get_next_line(env->fd, &line)) > 0)
 	{
 		x = 0;
 		x = ft_count_x(line);
@@ -33,10 +33,11 @@ int		ft_init_tab(t_env *env, char **av)
 		if (x != env->xc)
 			return (-1);
 		y++;
+		free(line);
 	}
 	if (ret == -1)
 		return (-1);
-	env->yc = y;
+	env->endy = y;
 	close(env->fd);
 	return (1);
 }
@@ -52,36 +53,11 @@ int		ft_count_x(char *str)
 	{
 		while (str[x] == ' ')
 			x++;
-		if ((str[x] <= '9' && str[x] >= '0') || str[x] == '-')
+		if (str[x] <= '9' && str[x] >= '0')
 			count++;
-		while (str[x] != '\0' && str[x] != ' ' && str[x] != '\n')
-			x++;
+		x++;
 	}
 	return (count);
-}
-
-void 	rec(t_env *env, char *str)
-{
-	int		columns;
-	int		i;
-	int		j;
-
-	j = 0;
-	if (!str || str[j] == '\n' || str[j] == '\0')
-		return ;
-	columns = ft_count_x(str);
-	if (str[j] == '\n' || columns == 0)
-		return ;
-	i = 0;
-	while (str[j] != '\0' && str[j] != '\n')
-	{
-		while (str[j] == ' ')
-			j++;
-		if (str[j] <= '9' && str[j] >= '0')
-			env->tab[env->yc][i++] = ft_atoi(&str[j]);
-		while (str[j] != '\0' && str[j] != '\n' && str[j] != ' ')
-			j++;
-	}
 }
 
 int		*ft_recupline(char *str)
@@ -116,12 +92,10 @@ void	ft_recup(t_env *env)
 	env->yc = 0;
 	while ((env->ret = get_next_line((int const)env->fd, &env->line)) > 0)
 	{
-		// rec(env, env->line);
 		env->tab[env->yc] = ft_recupline(env->line);
 		env->yc++;
 		free(env->line);
 	}
-	free(env->line);
 	close(env->fd);
 	env->endy = env->yc;
 }

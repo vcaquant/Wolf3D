@@ -99,6 +99,7 @@ clean:
 
 fclean: clean
 	@/bin/rm -rf $(NAME)
+	@/bin/rm -rf libft.h.gch
 
 re: clean fclean all
 

@@ -61,7 +61,6 @@ typedef struct	s_env
 	int		fd;
 
 	char	*line;
-	int		i;
 
 	int		*color;
 

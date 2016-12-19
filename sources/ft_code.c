@@ -84,7 +84,6 @@ int		aff_key(int keycode, t_env *env)
 		free(env->img);
 		freetab(env);
 		free(env);
-		while (42) ;
 		exit(EXIT_SUCCESS);
 	}
 	return (0);
