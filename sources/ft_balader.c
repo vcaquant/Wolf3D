@@ -12,6 +12,42 @@
 
 #include "../includes/wolf.h"
 
+void 	minimap(t_env *env)
+{
+	int		x;
+	int		y;
+
+	y = 0;
+	while (y < W_Y / 7)
+	{
+		x = 0;
+		while (x < W_X / 7)
+		{
+			if (env->tab[(int)(((double)y / (W_Y / 7)) * env->endy)][(int)(((double)x / (W_X / 7)) * env->endx)] == 1)
+			{
+				env->img->bts_img[x * 4 + 0 + y * env->img->size_line] = 255;
+				env->img->bts_img[x * 4 + 1 + y * env->img->size_line] = 255;
+				env->img->bts_img[x * 4 + 2 + y * env->img->size_line] = 255;
+			}
+			x++;
+		}
+		y++;
+	}
+	y = ((int)env->y * 5) - 2;
+	while (y < (env->y * 5))
+	{
+		x = ((int)env->x * 5) - 2;
+		while (x < (env->x * 5))
+		{
+			env->img->bts_img[x * 4 + 0 + y * env->img->size_line] = 0;
+			env->img->bts_img[x * 4 + 1 + y * env->img->size_line] = 0;
+			env->img->bts_img[x * 4 + 2 + y * env->img->size_line] = 0;
+			x++;
+		}
+		y++;
+	}
+}
+
 int		hor_sup_z(t_env *env, t_point *p3, double angle, int *color)
 {
 	(*p3).y = ((int)env->y);

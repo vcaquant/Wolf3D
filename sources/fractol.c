@@ -66,6 +66,7 @@ void	map(t_env *env)
 				put_black(env, x, y);
 		}
 	}
+	minimap(env);
 }
 
 int		main(int ac, char **av)

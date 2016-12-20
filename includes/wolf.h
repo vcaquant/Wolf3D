@@ -141,6 +141,7 @@ void			put_blue(t_env *env, int x, int y);
 
 void			ft_color(t_env *env, int x, int y);
 
+void 			minimap(t_env *env);
 int				hor_sup_z(t_env *env, t_point *p3, double angle, int *color);
 int				hor_inf_z(t_env *env, t_point *p3, double angle, int *color);
 void			ver_sup_pi(t_env *env, t_point *p2, double angle, int *color);
