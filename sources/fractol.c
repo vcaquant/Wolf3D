@@ -40,9 +40,9 @@ void	ft_color(t_env *env, int x, int y)
 void	map(t_env *env)
 {
 	int		x;
-	double	h;
 	int		y;
 	int		color;
+	double	h;
 	double	angle;
 
 	x = -1;
