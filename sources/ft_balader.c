@@ -33,11 +33,11 @@ void 	minimap(t_env *env)
 		}
 		y++;
 	}
-	y = ((int)env->y * 5) - 2;
-	while (y < (env->y * 5))
+	y = ((int)env->y * ((W_Y / 7) / env->endy)) - 2;
+	while (y < ((int)env->y * ((W_Y / 7) / env->endy)))
 	{
-		x = ((int)env->x * 5) - 2;
-		while (x < (env->x * 5))
+		x = ((int)env->x * ((W_X / 7) / env->endx)) - 2;
+		while (x < ((int)env->x * ((W_X / 7) / env->endx)))
 		{
 			env->img->bts_img[x * 4 + 0 + y * env->img->size_line] = 0;
 			env->img->bts_img[x * 4 + 1 + y * env->img->size_line] = 0;
