@@ -15,7 +15,6 @@ NAME = 			wolf3d
 SRC = 			sources/fractol.c \
 				sources/ft_recup.c \
 				sources/init.c \
-				sources/init_tab.c \
 				sources/ft_code.c \
 				sources/drawline.c \
 				sources/drawline_beeline.c \
@@ -23,12 +22,13 @@ SRC = 			sources/fractol.c \
 				sources/drawline_cadran2.c \
 				sources/draw_line.c \
 				sources/ft_error.c \
+				sources/minimap.c \
+				sources/put.c \
 				sources/ft_balader.c
 
 OBJ = 			fractol.o \
 				ft_recup.o \
 				init.o \
-				init_tab.o \
 				ft_code.o \
 				drawline.o \
 				drawline_beeline.o \
@@ -36,6 +36,8 @@ OBJ = 			fractol.o \
 				drawline_cadran2.o \
 				draw_line.o \
 				ft_error.o \
+				minimap.o \
+				put.o \
 				ft_balader.o
 
 HEADER =		./libft/libft.h

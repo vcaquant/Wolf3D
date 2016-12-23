@@ -12,31 +12,25 @@
 
 #include "../includes/wolf.h"
 
-void	put(t_env *env, int x, int y, int col)
+void	freetab(t_env *env)
 {
-	env->img->bts_img[x * 4 + 0 + y * env->img->size_line] = (col >> 16) & 0xff;
-	env->img->bts_img[x * 4 + 1 + y * env->img->size_line] = (col >> 8) & 0xff;
-	env->img->bts_img[x * 4 + 2 + y * env->img->size_line] = (col >> 0) & 0xff;
+	int		y;
+
+	y = 0;
+	while (y < env->endy)
+	{
+		free(env->tab[y]);
+		y++;
+	}
+	free(env->tab);
 }
 
-void	put_blue(t_env *env, int x, int y)
+void	img_init(t_env *env)
 {
-	env->img->bts_img[x * 4 + 0 + y * env->img->size_line] = 255;
-	env->img->bts_img[x * 4 + 1 + y * env->img->size_line] = 165;
-	env->img->bts_img[x * 4 + 2 + y * env->img->size_line] = 0;
-}
-
-void	put_black(t_env *env, int x, int y)
-{
-	env->img->bts_img[x * 4 + 0 + y * env->img->size_line] = 149;
-	env->img->bts_img[x * 4 + 1 + y * env->img->size_line] = 165;
-	env->img->bts_img[x * 4 + 2 + y * env->img->size_line] = 166;
-}
-
-void	color(t_env *env)
-{
-	env->color[0] = RED;
-	env->color[1] = AZUR;
+	env->img = malloc(sizeof(t_img));
+	env->img->ptr_img = mlx_new_image(env->mlx, W_X, W_Y);
+	env->img->bts_img = mlx_get_data_addr(env->img->ptr_img,
+		&(env->img->bpp), &(env->img->size_line), &(env->img->end));
 }
 
 void	init_var(t_env *env)

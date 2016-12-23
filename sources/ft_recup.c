@@ -16,11 +16,9 @@ int		ft_init_tab(t_env *env, char **av)
 {
 	char	*line;
 	int		ret;
-	int		i;
 	int		x;
 	int		y;
 
-	i = 0;
 	y = 0;
 	env->fd = open(av[1], O_RDONLY);
 	while ((ret = get_next_line(env->fd, &line)) > 0)
@@ -85,6 +83,54 @@ int		*ft_recupline(char *str)
 			j++;
 	}
 	return (tab);
+}
+
+int		verify2(t_env *env)
+{
+	if (env->endx < 3 || env->endy < 3)
+		return (-1);
+	while (env->tab[(int)env->y][(int)env->x] != 0)
+	{
+		if (env->x < env->endx - 1)
+			env->x++;
+		else
+		{
+			env->x = 1.5;
+			if (env->y < env->endy - 2)
+				env->y++;
+			else
+				return (-1);
+		}
+	}
+	return (1);
+}
+
+int		verify(t_env *env)
+{
+	int		x;
+	int		y;
+
+	y = env->endy - 1;
+	while (y >= 0)
+	{
+		x = env->endx - 1;
+		while (x >= 0)
+		{
+			if (y == 0 && env->tab[y][x] != 1)
+				return (-1);
+			else if (y == env->endy - 1 && env->tab[y][x] != 1)
+				return (-1);
+			else if (x == 0 && env->tab[y][x] != 1)
+				return (-1);
+			else if (x == env->endx - 1 && env->tab[y][x] != 1)
+				return (-1);
+			x--;
+		}
+		y--;
+	}
+	if (verify2(env) == -1)
+		return (-1);
+	return (1);
 }
 
 void	ft_recup(t_env *env)

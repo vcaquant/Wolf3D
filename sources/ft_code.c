@@ -6,26 +6,13 @@
 /*   By: vcaquant <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 18:20:51 by vcaquant          #+#    #+#             */
-/*   Updated: 2016/11/23 04:47:21 by vcaquant         ###   ########.fr       */
+/*   Updated: 2016/12/23 14:11:34 by vcaquant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 
-void	freetab(t_env *env)
-{
-	int		y;
-
-	y = 0;
-	while (y < env->endy)
-	{
-		free(env->tab[y]);
-		y++;
-	}
-	free(env->tab);
-}
-
-void 	speed(t_env *env)
+void	speed(t_env *env)
 {
 	if (env->front == 0.10)
 		env->front = 0.30;
@@ -79,10 +66,7 @@ int		aff_key(int keycode, t_env *env)
 			move_back(env);
 		if (keycode == 126)
 			move_front(env);
-		env->img = malloc(sizeof(t_img));
-		env->img->ptr_img = mlx_new_image(env->mlx, W_X, W_Y);
-		env->img->bts_img = mlx_get_data_addr(env->img->ptr_img,
-			&(env->img->bpp), &(env->img->size_line), &(env->img->end));
+		img_init(env);
 		map(env);
 		mlx_put_image_to_window(env->mlx, env->win, env->img->ptr_img, 0, 0);
 	}

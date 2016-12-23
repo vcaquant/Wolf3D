@@ -60,10 +60,7 @@ void	map(t_env *env)
 			if (y > ((1 - (h * 1.0 / W_Y)) * W_Y) / 2 &&
 				y < (W_Y / 2.0 + h / 2.0))
 				put(env, x, y, color);
-			else if (y < ((1 - (h * 1.0 / W_Y)) * W_Y) / 2)
-				put_blue(env, x, y);
-			else
-				put_black(env, x, y);
+			sky_floor(env, x, y, h);
 		}
 	}
 	minimap(env);
@@ -82,9 +79,11 @@ int		main(int ac, char **av)
 	init_var(env);
 	env->fd = open(av[1], O_RDONLY);
 	env->tab = (int**)malloc(sizeof(int*) * (env->endy + 1));
+	ft_recup(env);
+	if (verify(env) == -1)
+		return (ft_error());
 	env->mlx = mlx_init();
 	prp_win(env);
-	ft_recup(env);
 	map(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img->ptr_img, 0, 0);
 	mlx_hook(env->win, 2, 0, aff_key, env);

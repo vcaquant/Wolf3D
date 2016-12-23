@@ -6,7 +6,7 @@
 /*   By: vcaquant <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 10:04:38 by vcaquant          #+#    #+#             */
-/*   Updated: 2016/11/23 10:05:00 by vcaquant         ###   ########.fr       */
+/*   Updated: 2016/12/23 16:09:25 by vcaquant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ typedef struct	s_env
 {
 	int		**tab;
 	void	*mlx;
-	void	*win_b;
 	void	*win;
-	void	*s_win;
 	int		fd;
 
 	char	*line;
@@ -99,18 +97,28 @@ typedef struct	s_drawline
 	double		e;
 }				t_drawline;
 
-double			draw_line(t_env *env, double angle, int *color);
-void			win(t_env *env);
+int				red_cross(void);
+void			prp_win(t_env *env);
+void			ft_color(t_env *env, int x, int y);
 void			map(t_env *env);
 
+int				ft_error(void);
+int				ft_error2(void);
+
+void			freetab(t_env *env);
+void			img_init(t_env *env);
 int				ft_init_struct(t_env **env);
 void			init_var(t_env *env);
 
-void			prp_win(t_env *env);
-int				red_cross(void);
+int				ft_init_tab(t_env *env, char **av);
+int				ft_count_x(char *str);
+int				*ft_recupline(char *str);
+int				verify(t_env *env);
+void			ft_recup(t_env *env);
 
-int				aff_key(int keycode, t_env *env);
-void			move(t_env *env, int keycode);
+void			init_point(t_env *env, t_point *p1, t_point *p2, t_point *p3);
+void			change_point(t_point *p2, t_point *p3);
+double			draw_line(t_env *env, double angle, int *color);
 
 void			ft_drawline(t_env *env, t_point p1, t_point p2);
 void			cadran1_a(t_drawline *draw, t_env *env);
@@ -126,33 +134,23 @@ void			dx_null_b(t_drawline *draw, t_env *env);
 void			dy_null_a(t_drawline *draw, t_env *env);
 void			dy_null_b(t_drawline *draw, t_env *env);
 
-void			init_tab1(t_env *env);
-void			init_tab2(t_env *env);
-void			init_tab3(t_env *env);
-void			init_tab4(t_env *env);
-
-int				mouse_move(int x, int y, t_env *env);
-int				mouse_hook(int button, int x, int y, t_env *env);
-
-void			color(t_env *env);
 void			put(t_env *env, int x, int y, int color);
 void			put_black(t_env *env, int x, int y);
 void			put_blue(t_env *env, int x, int y);
+void			sky_floor(t_env *env, int x, int y, double h);
 
-void			ft_color(t_env *env, int x, int y);
+void			mini(t_env *env);
+void			minimap(t_env *env);
 
-void 			minimap(t_env *env);
 int				hor_sup_z(t_env *env, t_point *p3, double angle, int *color);
 int				hor_inf_z(t_env *env, t_point *p3, double angle, int *color);
 void			ver_sup_pi(t_env *env, t_point *p2, double angle, int *color);
 void			ver_inf_pi(t_env *env, t_point *p2, double angle, int *color);
 
-int				ft_init_tab(t_env *env, char **av);
-int				ft_count_x(char *str);
-int				*ft_recupline(char *str);
-void			ft_recup(t_env *env);
-
-int				ft_error(void);
-int				ft_error2(void);
+void			speed(t_env *env);
+void			move_back(t_env *env);
+void			move_front(t_env *env);
+void			cam(t_env *env, int keycode);
+int				aff_key(int keycode, t_env *env);
 
 #endif
