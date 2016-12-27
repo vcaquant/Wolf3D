@@ -102,6 +102,8 @@ void			prp_win(t_env *env);
 void			ft_color(t_env *env, int x, int y);
 void			map(t_env *env);
 
+int				verify2(t_env *env);
+int				verify(t_env *env);
 int				ft_error(void);
 int				ft_error2(void);
 
@@ -113,7 +115,6 @@ void			init_var(t_env *env);
 int				ft_init_tab(t_env *env, char **av);
 int				ft_count_x(char *str);
 int				*ft_recupline(char *str);
-int				verify(t_env *env);
 void			ft_recup(t_env *env);
 
 void			init_point(t_env *env, t_point *p1, t_point *p2, t_point *p3);
